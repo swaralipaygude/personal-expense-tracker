@@ -5,10 +5,18 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const expenseRoutes = require('./routes/expenseRoutes');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 app.use(express.json());  // To parse JSON data from requests
+app.use(cors()); // Enable CORS for all routes
+// app.use(cors({
+//   origin: 'http://localhost:3000', // frontend URL
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 app.get('/', (req, res) => {
   res.send('Personal Expense Tracker API is running');
@@ -23,7 +31,7 @@ mongoose.connect(mongoURI, {
   .catch((error) => console.error('MongoDB connection error:', error));
 
 // Routes
-app.use('/api', expenseRoutes);  // All expense routes are prefixed with /api
+app.use('/', expenseRoutes);
 
 
 

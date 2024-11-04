@@ -1,0 +1,33 @@
+.expense-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .expense-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: left;
+    transition: transform 0.2s;
+  }
+  
+  .expense-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .expense-card h3 {
+    color: #4a90e2;
+  }
+  
+  .expense-card p {
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .button-space {
+    margin: 0 60px; /* Adjust the spacing as needed */
+  }

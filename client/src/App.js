@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import AddExpense from './components/AddExpense';
+import ExpenseList from './components/ExpenseList';
+import axios from 'axios';
 import './App.css';
 
 function App() {
+  const [expenses, setExpenses] = useState([]);
+
+  useEffect(() => {
+    // Fetch expenses from the backend
+    axios.get('http://localhost:3000/expenses')
+      .then(res => setExpenses(res.data))
+      .catch(err => console.error("Error fetching expenses", err));
+  }, []);
+
+  const addNewExpense = (newExpense) => {
+    setExpenses([...expenses, newExpense]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="title">💸 Personal Expense Tracker</h1>
+      <AddExpense addNewExpense={addNewExpense} />
+      <ExpenseList expenses={expenses} setExpenses={setExpenses} />
     </div>
   );
 }

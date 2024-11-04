@@ -6,6 +6,7 @@ const Expense = require('../models/Expense');
 // CREATE - Add a new expense
 router.post('/expenses', async (req, res) => {
     // console.log('Request Body:', req.body);
+    console.log('POST /expenses route hit');
 
   const { description, amount, category } = req.body;
   try {
@@ -20,6 +21,7 @@ router.post('/expenses', async (req, res) => {
 // READ - Get all expenses
 router.get('/expenses', async (req, res) => {
   try {
+    console.log('GET /expenses route hit');
     const expenses = await Expense.find({});
     res.status(200).json(expenses);
   } catch (error) {
