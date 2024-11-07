@@ -1,0 +1,458 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Personal Expense Tracker API",
+      "description": "This API provides CRUD operations to manage expenses in the Personal Expense Tracker application. Each expense includes a description, amount, and category.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local development server"
+      }
+    ],
+    "paths": {
+      "/expenses": {
+        "post": {
+          "summary": "Create a new expense",
+          "description": "Creates a new expense in the tracker.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number"
+                    },
+                    "category": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "description": "Lunch",
+                    "amount": 12.50,
+                    "category": "Food & Drinks"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Expense created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "_id": "5f5f8c6b1c9d440000a1f914",
+                      "description": "Lunch",
+                      "amount": 12.50,
+                      "category": "Food & Drinks",
+                      "createdAt": "2024-11-04T07:16:23.000Z",
+                      "updatedAt": "2024-11-04T07:16:23.000Z"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error creating expense",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "error": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Error creating expense",
+                      "error": "Validation error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all expenses",
+          "description": "Retrieves a list of all expenses.",
+          "responses": {
+            "200": {
+              "description": "A list of expenses",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "number"
+                        },
+                        "category": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      },
+                      "example": {
+                        "_id": "5f5f8c6b1c9d440000a1f914",
+                        "description": "Lunch",
+                        "amount": 12.50,
+                        "category": "Food & Drinks",
+                        "createdAt": "2024-11-04T07:16:23.000Z",
+                        "updatedAt": "2024-11-04T07:16:23.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error fetching expenses",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "error": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Error fetching expenses",
+                      "error": "Database connection issue"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/expenses/{id}": {
+        "get": {
+          "summary": "Get an expense by ID",
+          "description": "Retrieves a single expense by its ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The ID of the expense"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Expense retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "_id": "5f5f8c6b1c9d440000a1f914",
+                      "description": "Lunch",
+                      "amount": 12.50,
+                      "category": "Food & Drinks",
+                      "createdAt": "2024-11-04T07:16:23.000Z",
+                      "updatedAt": "2024-11-04T07:16:23.000Z"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Expense not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Expense not found"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error fetching expense",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "error": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Error fetching expense",
+                      "error": "Invalid ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update an expense by ID",
+          "description": "Updates an existing expense's details by ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The ID of the expense"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number"
+                    },
+                    "category": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "description": "Groceries",
+                    "amount": 50.00,
+                    "category": "Shopping"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Expense updated successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "_id": "5f5f8c6b1c9d440000a1f914",
+                      "description": "Groceries",
+                      "amount": 50.00,
+                      "category": "Shopping",
+                      "createdAt": "2024-11-04T07:16:23.000Z",
+                      "updatedAt": "2024-11-04T07:16:23.000Z"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Expense not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Expense not found"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error updating expense",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "error": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Error updating expense",
+                      "error": "Invalid input data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete an expense by ID",
+          "description": "Deletes an expense from the tracker by its ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The ID of the expense"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Expense deleted successfully"
+            },
+            "404": {
+              "description": "Expense not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Expense not found"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Error deleting expense",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "error": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "message": "Error deleting expense",
+                      "error": "Invalid ID"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
