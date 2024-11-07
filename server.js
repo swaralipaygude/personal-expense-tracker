@@ -12,11 +12,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());  // To parse JSON data from requests
 app.use(cors()); // Enable CORS for all routes
-// app.use(cors({
-//   origin: 'http://localhost:3000', // frontend URL
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true
-// }));
 
 app.get('/', (req, res) => {
   res.send('Personal Expense Tracker API is running');
