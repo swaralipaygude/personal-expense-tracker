@@ -1,34 +1,11 @@
-// import React from 'react';
-// import './ExpenseList.css';
-
-// function ExpenseList({ expenses }) {
-//   return (
-//     <div className="expense-list">
-//       {expenses.length === 0 ? (
-//         <p>No expenses to display.</p>
-//       ) : (
-//         expenses.map((expense, index) => (
-//           <div key={index} className="expense-card">
-//             <h3>{expense.title}</h3>
-//             <p>💲 {expense.amount}</p>
-//             <p>📅 {new Date(expense.date).toLocaleDateString()}</p>
-//             <p>Category: {expense.category || 'N/A'}</p>
-//           </div>
-//         ))
-//       )}
-//     </div>
-//   );
-// }
-
-// export default ExpenseList;
-
-// src/components/ExpenseList.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ExpenseList.css';
 
 function ExpenseList({ expenses, setExpenses }) {
   const [editingExpense, setEditingExpense] = useState(null);
+  const [view, setView] = useState('grid'); // Default is 'grid'
+
   const [formData, setFormData] = useState({
     description: '',
     amount: '',
@@ -72,12 +49,23 @@ function ExpenseList({ expenses, setExpenses }) {
   };
 
   return (
+    
+    <div className="expense-list-parent-div"> 
+
+    <h2>Expense List</h2>
+        <button onClick={() => setView(view === 'grid' ? 'list' : 'grid')}>
+        {view === 'grid' ? 'Switch to List View' : 'Switch to Grid View'}
+        </button>
+    
     <div className="expense-list">
+        
       {expenses.length === 0 ? (
         <p>No expenses to display.</p>
       ) : (
+        
         expenses.map((expense) => (
-          <div key={expense._id} className="expense-card">
+            <div key={expense._id} className={`expense-card ${view}`}>
+
             <h3>{expense.description}</h3>
             <p>💲 {expense.amount}</p>
             <p>📅 {new Date(expense.date).toLocaleDateString()}</p>
@@ -123,6 +111,8 @@ function ExpenseList({ expenses, setExpenses }) {
           <button type="submit">Update Expense</button>
         </form>
       )}
+    </div>
+
     </div>
   );
 }
