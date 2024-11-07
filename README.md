@@ -27,27 +27,27 @@ Follow these instructions to get a copy of the project running on your local mac
 ### Clone the Repository
 
 bash:
-git clone https://github.com/YourUsername/personal-expense-tracker.git
-cd personal-expense-tracker
+<br/> git clone https://github.com/YourUsername/personal-expense-tracker.git
+<br/> cd personal-expense-tracker
 
 Install Dependencies:
 
-npm install
-cd client
-npm install
-cd ..
+<br/> npm install
+<br/> cd client
+<br/> npm install
+<br/> cd ..
 
 ### Setting Up MongoDB
 
-Install MongoDB locally if you haven't already. Follow the instructions for your OS [here](https://www.mongodb.com/docs/manual/installation/).
-Once MongoDB is installed and running, create a database called expensesDB (or use a different name of your choice).
-Configure .env
-You need to create a .env file in the root directory with the following content:
-MONGODB_URI=mongodb://localhost:27017/expensesDB
-PORT=3000
+<br/> Install MongoDB locally if you haven't already. Follow the instructions for your OS [here](https://www.mongodb.com/docs/manual/installation/).
+<br/> Once MongoDB is installed and running, create a database called expensesDB (or use a different name of your choice).
+<br/> Configure .env
+<br/> You need to create a .env file in the root directory with the following content:
+<br/> MONGODB_URI=mongodb://localhost:27017/expensesDB
+<br/> PORT=3000
 
-MONGODB_URI should be your MongoDB connection string.
-PORT is the port number where your Node.js server will run. If you change this, update the frontend's API calls to reflect the new port.
+<br/> MONGODB_URI should be your MongoDB connection string.
+<br/> PORT is the port number where your Node.js server will run. If you change this, update the frontend's API calls to reflect the new port.
 
 ### Running the App
 Start the backend server:
