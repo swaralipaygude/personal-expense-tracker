@@ -9,6 +9,9 @@ function AddExpense({ addNewExpense }) {
     category: ''
   });
 
+  const [showForm, setShowForm] = useState(false); // State to track form visibility
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -22,11 +25,18 @@ function AddExpense({ addNewExpense }) {
       .then(res => {
         addNewExpense(res.data);
         setFormData({ description: '', amount: '', category: '' });
+        setShowForm(false); // Hide the form after submission
       })
       .catch(err => console.error("Error adding expense", err));
   };
 
   return (
+    <div className="expense-container">
+      {!showForm ? (
+        <button onClick={() => setShowForm(true)} className="add-expense-btn">
+          ➕
+        </button>
+      ) : (
     <form onSubmit={handleSubmit} className="expense-form">
       <input
         type="text"
@@ -60,6 +70,8 @@ function AddExpense({ addNewExpense }) {
       </select>
       <button type="submit">Add Expense</button>
     </form>
+      )}
+    </div>
   );
 }
 
