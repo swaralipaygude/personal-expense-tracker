@@ -37,8 +37,7 @@ Install Dependencies:
 <br/> cd ..
 
 ### Setting Up MongoDB
-
-<br/> Install MongoDB locally if you haven't already. Follow the instructions for your OS [here](https://www.mongodb.com/docs/manual/installation/).
+Install MongoDB locally if you haven't already. Follow the instructions for your OS [here](https://www.mongodb.com/docs/manual/installation/).
 <br/> Once MongoDB is installed and running, create a database called expensesDB (or use a different name of your choice).
 <br/> Configure .env
 <br/> You need to create a .env file in the root directory with the following content:
@@ -57,7 +56,7 @@ Start the frontend:
 
 Visit http://localhost:3000 to use the app.
 
-#### Example Test Data
+### Example Test Data
 For local testing, you can insert example data into your MongoDB database. Run the following in the MongoDB shell:
 
 use expensesDB
@@ -78,7 +77,7 @@ db.expenses.insertMany([
   }
 ])
 
-### Folder Structure
+## Folder Structure
 
 personal-expense-tracker/
 
