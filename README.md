@@ -45,23 +45,24 @@ Install Dependencies:
 <br/> You need to create a .env file in the root directory with the following content:
 <br/> MONGODB_URI=mongodb://localhost:27017/expensesDB
 <br/> PORT=3000
-
 <br/> MONGODB_URI should be your MongoDB connection string.
 <br/> PORT is the port number where your Node.js server will run. If you change this, update the frontend's API calls to reflect the new port.
 
 ### Running the App
 Start the backend server:
-npm run start
+<br/> npm run start
 
 Start the frontend:
-cd client
-npm start
+<br/> cd client
+<br/> npm start
 
 Visit http://localhost:3000 to use the app.
 
 #### Example Test Data
 For local testing, you can insert example data into your MongoDB database. Run the following in the MongoDB shell:
+
 use expensesDB
+
 db.expenses.insertMany([
   {
     description: "Groceries",
@@ -69,6 +70,7 @@ db.expenses.insertMany([
     category: "Food & Drinks",
     date: new Date()
   },
+  
   {
     description: "Uber Ride",
     amount: 15,
@@ -80,10 +82,17 @@ db.expenses.insertMany([
 ### Folder Structure
 
 personal-expense-tracker/
+
 ├── client/                  # React frontend
+
 ├── models/                  # Mongoose models
+
 ├── routes/                  # API routes for CRUD operations
+
 ├── server.js                # Entry point for Node.js server
+
 ├── .env                     # Environment variables
+
 ├── package.json             # Project metadata and dependencies
+
 └── README.md                # Documentation
