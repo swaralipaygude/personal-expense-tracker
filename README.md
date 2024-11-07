@@ -31,7 +31,6 @@ bash:
 <br/> cd personal-expense-tracker
 
 Install Dependencies:
-
 <br/> npm install
 <br/> cd client
 <br/> npm install
