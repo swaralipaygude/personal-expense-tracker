@@ -94,3 +94,7 @@ personal-expense-tracker/
 ├── package.json             # Project metadata and dependencies
 
 └── README.md                # Documentation
+
+## API Documentation
+
+API documentation can be found in api-docs.json file.
